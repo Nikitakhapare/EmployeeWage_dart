@@ -1,31 +1,45 @@
 import 'dart:math';
 
 class Employee {
-  int attendance() {
-    int wagePerHour = 20;
-    int fullTimeWorkingHour = 8;
-    int partTimeWorkingHour = 4;
-    int dailyWage = 0;
-    var checker = Random().nextInt(2);
-    if (checker == 1) {
-      print("Employee is present");
-      int rand = Random().nextInt(2);
-      if (rand == 1) {
-        print("Employee is Full Time Present");
-        dailyWage = wagePerHour * fullTimeWorkingHour;
-      } else {
-        print("Employee is Part Time Present");
-        dailyWage = wagePerHour * partTimeWorkingHour;
-      }
-    } else {
-      print("Employee is absent");
+  int empWorkingHr = 0;
+  int wagePerHr = 20;
+  int dailyWage = 0;
+  int empType() {
+    int rand = Random().nextInt(3);
+    print(rand);
+    switch (rand) {
+      case 1:
+        print("Employee is part Time");
+        empWorkingHr = 4;
+        break;
+
+      case 2:
+        print("Employee is Full Time");
+        empWorkingHr = 8;
+        break;
+
+      default:
+        print("Employee is absent");
+        empWorkingHr = 0;
+        break;
     }
-    return dailyWage;
+    return empWorkingHr;
+  }
+
+  void wageComputation(Function empType) {
+    if (empWorkingHr == 4) {
+      dailyWage = wagePerHr * empWorkingHr;
+      print("Employee eage is $dailyWage");
+    } else {
+      dailyWage = wagePerHr * empWorkingHr;
+      print("Employee wage is $dailyWage");
+    }
   }
 }
 
 void main() {
   var emp = new Employee();
   print("Welcome To employee wage Computation program");
-  print("Employee wage is ${emp.attendance()}");
+  emp.empType();
+  emp.wageComputation(emp.empType);
 }
