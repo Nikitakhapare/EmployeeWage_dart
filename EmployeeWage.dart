@@ -24,14 +24,16 @@ class Employee {
   void wageComputation() {
     int dailyWage = 0;
     int working_day = 0;
-    print(empType());
-    while (working_day < 20) {
+    int workingHr = 0;
+    while (workingHr < 100 && working_day < 20) {
       if (empType() == 1) {
         int rand = Random().nextInt(2) + 1;
         if (rand == 1) {
           dailyWage = dailyWage + wagePerHr * fullTimeEmpWorkingHr;
+          workingHr += fullTimeEmpWorkingHr;
         } else {
           dailyWage = dailyWage + wagePerHr * partTimeEmpWorkingHr;
+          workingHr += partTimeEmpWorkingHr;
         }
       } else {
         working_day--;
@@ -40,6 +42,7 @@ class Employee {
     }
     print("Monthly Wage= $dailyWage");
     print("Working Days is $working_day");
+    print("Working Hour is $workingHr");
   }
 }
 
